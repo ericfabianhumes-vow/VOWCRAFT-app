@@ -1,0 +1,24 @@
+# Render Blueprint - lets you deploy this whole app by clicking one
+# "Deploy to Render" link instead of filling in a manual setup form.
+# Render reads this file automatically from the repo root.
+#
+# The three envVars marked "sync: false" are secrets - Render will ask you
+# to type each one in during setup instead of storing a value here.
+services:
+  - type: web
+    name: vowcraft
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false

@@ -4,162 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VowCraft — Say it exactly right</title>
+<meta name="description" content="Tell VowCraft who your speech is for and what they mean to you. It writes a full wedding speech or vow set in your voice — you edit, download, and deliver it with confidence.">
+<meta property="og:title" content="VowCraft — Say it exactly right">
+<meta property="og:description" content="AI-written wedding speeches and vows, personalized with your real details and memories.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --ink: #241B2B;
-    --plum-deep: #1E1523;
-    --paper: #FAF6F0;
-    --gold: #C9A24B;
-    --rose: #C98E86;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--plum-deep);
-    color: var(--paper);
-    font-family: 'Inter', sans-serif;
-    line-height: 1.5;
-  }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 64px 24px 96px; }
-
-  header { margin-bottom: 56px; }
-  header .eyebrow-free {
-    font-family: 'Spectral', serif;
-    font-style: italic;
-    color: var(--rose);
-    font-size: 1.05rem;
-    margin: 0 0 6px;
-  }
-  h1 {
-    font-family: 'Spectral', serif;
-    font-weight: 600;
-    font-size: clamp(2.2rem, 6vw, 3.2rem);
-    line-height: 1.08;
-    margin: 0 0 18px;
-    max-width: 11ch;
-  }
-  header p.sub {
-    max-width: 46ch;
-    color: rgba(250,246,240,0.72);
-    font-size: 1.05rem;
-  }
-
-  .card {
-    background: var(--paper);
-    color: var(--ink);
-    border-radius: 4px;
-    padding: 40px;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.35);
-  }
-  .step-label {
-    font-family: 'Spectral', serif;
-    font-style: italic;
-    color: var(--rose);
-    font-size: 0.95rem;
-    margin: 0 0 4px;
-  }
-  label {
-    display: block;
-    font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--ink);
-    margin: 22px 0 6px;
-  }
-  label:first-of-type { margin-top: 0; }
-  select, textarea, input[type=text] {
-    width: 100%;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.98rem;
-    padding: 12px 14px;
-    border-radius: 3px;
-    border: 1px solid rgba(36,27,43,0.2);
-    background: #fff;
-    color: var(--ink);
-  }
-  textarea { min-height: 100px; resize: vertical; }
-  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  @media (max-width: 520px) { .row { grid-template-columns: 1fr; } }
-
-  button.primary {
-    margin-top: 28px;
-    width: 100%;
-    background: var(--ink);
-    color: var(--paper);
-    border: none;
-    padding: 15px 20px;
-    border-radius: 3px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  button.primary:disabled { opacity: 0.5; cursor: default; }
-  button.primary:hover:not(:disabled) { background: #14101a; }
-
-  .error {
-    margin-top: 14px;
-    color: #8a2b2b;
-    font-size: 0.88rem;
-    display: none;
-  }
-  .notice {
-    margin-top: 14px;
-    color: #5b4a1f;
-    background: #F3ECE0;
-    padding: 12px 14px;
-    border-radius: 3px;
-    font-size: 0.88rem;
-    display: none;
-  }
-
-  .output { margin-top: 40px; display: none; }
-  .output h2 {
-    font-family: 'Spectral', serif;
-    font-weight: 600;
-    font-size: 1.4rem;
-    margin: 0 0 16px;
-  }
-  .speech-box {
-    position: relative;
-    background: #fff;
-    border: 1px solid rgba(36,27,43,0.15);
-    border-radius: 3px;
-    padding: 24px;
-    white-space: pre-wrap;
-    font-family: 'Spectral', serif;
-    font-size: 1.05rem;
-    line-height: 1.65;
-  }
-
-  .unlock-box {
-    margin-top: 18px;
-    padding: 20px;
-    border: 1px solid rgba(36,27,43,0.15);
-    border-radius: 3px;
-    background: #F3ECE0;
-  }
-  .unlock-box p { margin: 0 0 12px; font-size: 0.92rem; }
-  button.pay-btn {
-    background: var(--gold);
-    color: var(--ink);
-    font-weight: 600;
-    font-size: 0.92rem;
-    padding: 11px 18px;
-    border-radius: 3px;
-    border: none;
-    cursor: pointer;
-  }
-
-  .unlocked-actions { display: none; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
-  .unlocked-actions button {
-    background: var(--ink); color: var(--paper); border: none;
-    padding: 11px 18px; border-radius: 3px; font-weight: 600; font-size: 0.92rem; cursor: pointer;
-  }
-
-  footer { margin-top: 40px; font-size: 0.8rem; color: rgba(250,246,240,0.45); }
-</style>
+<link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 <div class="wrap">
@@ -189,7 +42,7 @@
       </select>
     </div>
 
-    <p class="step-label" style="margin-top:26px;">Step 2</p>
+    <p class="step-label step-2">Step 2</p>
     <label for="names">Names</label>
     <input type="text" id="names" placeholder="e.g. speaking about Jordan, for Alex and Jordan's wedding">
 
@@ -223,141 +76,15 @@
     </div>
   </div>
 
-  <footer>VowCraft — payment verified directly with Stripe before your full speech is released.</footer>
+  <footer>
+    <div>VowCraft — payment verified directly with Stripe before your full speech is released.</div>
+    <div class="legal-links">
+      <a href="/terms.html">Terms</a>
+      <a href="/privacy.html">Privacy</a>
+    </div>
+  </footer>
 </div>
 
-<script>
-let currentDraftId = null;
-let fullSpeech = "";
-
-const generateBtn = document.getElementById('generateBtn');
-const unlockBtn = document.getElementById('unlockBtn');
-const errorMsg = document.getElementById('errorMsg');
-const noticeMsg = document.getElementById('noticeMsg');
-const output = document.getElementById('output');
-const speechText = document.getElementById('speechText');
-const unlockBox = document.getElementById('unlockBox');
-const unlockedActions = document.getElementById('unlockedActions');
-
-function showError(msg) {
-  errorMsg.textContent = msg;
-  errorMsg.style.display = 'block';
-}
-function showNotice(msg) {
-  noticeMsg.textContent = msg;
-  noticeMsg.style.display = 'block';
-}
-
-function unlockUI(text) {
-  fullSpeech = text;
-  speechText.textContent = text;
-  unlockBox.style.display = 'none';
-  unlockedActions.style.display = 'flex';
-}
-
-generateBtn.addEventListener('click', async () => {
-  const occasion = document.getElementById('occasion').value;
-  const tone = document.getElementById('tone').value;
-  const names = document.getElementById('names').value.trim();
-  const details = document.getElementById('details').value.trim();
-  const length = document.getElementById('length').value;
-
-  errorMsg.style.display = 'none';
-  noticeMsg.style.display = 'none';
-
-  if (!details) {
-    showError('Add at least one real detail or memory — it makes a big difference.');
-    return;
-  }
-
-  generateBtn.disabled = true;
-  generateBtn.textContent = 'Writing...';
-
-  try {
-    const res = await fetch('/api/generate', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ occasion, tone, names, details, length })
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Something went wrong.');
-
-    currentDraftId = data.draftId;
-    speechText.textContent = data.preview;
-    output.style.display = 'block';
-    unlockBox.style.display = 'block';
-    unlockedActions.style.display = 'none';
-    output.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  } catch (err) {
-    showError(err.message);
-  } finally {
-    generateBtn.disabled = false;
-    generateBtn.textContent = 'Write my speech';
-  }
-});
-
-unlockBtn.addEventListener('click', async () => {
-  if (!currentDraftId) return;
-  unlockBtn.disabled = true;
-  unlockBtn.textContent = 'Redirecting to checkout...';
-  try {
-    const res = await fetch('/api/create-checkout-session', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ draftId: currentDraftId })
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Could not start checkout.');
-    window.location.href = data.url;
-  } catch (err) {
-    showError(err.message);
-    unlockBtn.disabled = false;
-    unlockBtn.textContent = 'Unlock full speech — $12';
-  }
-});
-
-document.getElementById('copyBtn')?.addEventListener('click', () => {
-  navigator.clipboard.writeText(fullSpeech);
-});
-document.getElementById('downloadBtn')?.addEventListener('click', () => {
-  const blob = new Blob([fullSpeech], { type: 'text/plain' });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'speech.txt';
-  a.click();
-  URL.revokeObjectURL(url);
-});
-
-// If Stripe just redirected back here, verify the payment server-side
-// before anything gets unlocked.
-(async function checkForReturnFromStripe() {
-  const params = new URLSearchParams(window.location.search);
-  const sessionId = params.get('session_id');
-  const draftId = params.get('draftId');
-  const canceled = params.get('canceled');
-
-  if (canceled) {
-    showNotice('Checkout was canceled — no charge was made.');
-    return;
-  }
-  if (!sessionId || !draftId) return;
-
-  try {
-    const res = await fetch(`/api/verify-session?session_id=${encodeURIComponent(sessionId)}&draftId=${encodeURIComponent(draftId)}`);
-    const data = await res.json();
-    if (data.paid && data.fullSpeech) {
-      currentDraftId = draftId;
-      output.style.display = 'block';
-      unlockUI(data.fullSpeech);
-      showNotice('Payment confirmed — your full speech is unlocked below.');
-    } else {
-      showError('We could not confirm this payment. If you were charged, contact support with your receipt.');
-    }
-  } catch (err) {
-    showError('Could not verify payment right now. Refresh the page to try again.');
-  }
-})();
-</script>
+<script src="/app.js" defer></script>
 </body>
 </html>
