@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VowCraft — Say it exactly right</title>
+<meta name="description" content="Tell VowCraft who your speech is for and what they mean to you. It writes a full wedding speech or vow set in your voice — you edit, download, and deliver it with confidence.">
+<meta property="og:title" content="VowCraft — Say it exactly right">
+<meta property="og:description" content="AI-written wedding speeches and vows, personalized with your real details and memories.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow-free">for the person who has to stand up and speak</p>
+    <h1>Say it exactly right.</h1>
+    <p class="sub">Tell VowCraft who it's for and what they mean to you. It writes a full speech or vow set in your voice — you edit, download, and deliver it with total confidence.</p>
+  </header>
+
+  <div class="card">
+    <p class="step-label">Step 1</p>
+    <label for="occasion">This speech is for</label>
+    <div class="row">
+      <select id="occasion">
+        <option>Best man speech</option>
+        <option>Maid of honor speech</option>
+        <option>Wedding vows</option>
+        <option>Parent of the bride/groom toast</option>
+        <option>Rehearsal dinner toast</option>
+      </select>
+      <select id="tone">
+        <option>Warm and funny</option>
+        <option>Heartfelt and sincere</option>
+        <option>Mostly funny, one serious moment</option>
+        <option>Short and simple</option>
+      </select>
+    </div>
+
+    <p class="step-label step-2">Step 2</p>
+    <label for="names">Names</label>
+    <input type="text" id="names" placeholder="e.g. speaking about Jordan, for Alex and Jordan's wedding">
+
+    <label for="details">A few real details or memories (the more specific, the better it sounds)</label>
+    <textarea id="details" placeholder="e.g. we met in college, the time they drove 6 hours to help me move, how they never give up on people they love..."></textarea>
+
+    <label for="length">Length</label>
+    <select id="length">
+      <option value="short">Short (~1 minute)</option>
+      <option value="medium" selected>Medium (~2-3 minutes)</option>
+      <option value="long">Long (~4-5 minutes)</option>
+    </select>
+
+    <button class="primary" id="generateBtn">Write my speech</button>
+    <p class="error" id="errorMsg"></p>
+    <p class="notice" id="noticeMsg"></p>
+
+    <div class="output" id="output">
+      <h2>Your draft</h2>
+      <div class="speech-box" id="speechBox"><span id="speechText"></span></div>
+
+      <div class="unlock-box" id="unlockBox">
+        <p><strong>This is a preview.</strong> Unlock the full speech, plus a clean download, for $12.</p>
+        <button class="pay-btn" id="unlockBtn">Unlock full speech — $12</button>
+      </div>
+
+      <div class="unlocked-actions" id="unlockedActions">
+        <button id="copyBtn">Copy text</button>
+        <button id="downloadBtn">Download as .txt</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div>VowCraft — payment verified directly with Stripe before your full speech is released.</div>
+    <div class="legal-links">
+      <a href="/terms.html">Terms</a>
+      <a href="/privacy.html">Privacy</a>
+    </div>
+  </footer>
+</div>
+
+<script src="/app.js" defer></script>
+</body>
+</html>
