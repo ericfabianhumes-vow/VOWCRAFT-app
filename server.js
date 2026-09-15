@@ -235,6 +235,14 @@ app.post('/api/create-checkout-session', checkoutLimiter, async (req, res) => {
 
     const session = await stripe.checkout.sessions.create({
       mode: 'payment',
+      // Not setting payment_method_types on purpose: Stripe's newer accounts
+      // have "Managed Payments" on by default, which now rejects this
+      // parameter outright and picks available payment methods itself.
+      //
+      // Managed Payments also requires every product to carry a tax code,
+      // which this app has no need to manage. Disabling it for this session
+      // avoids that requirement entirely and keeps checkout simple.
+      managed_payments: { enabled: false },
       line_items: [{
         price_data: {
           currency: CURRENCY,
